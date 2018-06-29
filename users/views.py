@@ -4,7 +4,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.views.generic.base import View
 from django.urls import reverse
 from videos.models import Category,Video,Push_date
-
+from operation.models import VideoComments,UserFavorite,UserMessage
+from users.models import UserProfile
 class LoginView(View):
     def get(self,request):
         return render(request, 'login.html')
@@ -37,19 +38,11 @@ class RegisterView(View):
         return render(request,'register.html')
 
 
-# class IndexView(View, **kwargs):
-#     def get(self,request):
-#         all_videos = Video.objects.all()
-#         all_categorys = Category.objects.all()
-#         return render(request,'index.html',{
-#             'all_categorys': all_categorys,
-#             'all_videos':all_videos,
-#         })
 
 class SearchView(View):
-    def get(self,request,cate_id):
-        all_video = Video.objects.all()
-        all_videos = all_video.filter(category_id=int(cate_id))
+    def post(self,request):
+        keywords = request.POST.get('keywords',None)
+        all_videos = Video.objects.filter(name__icontains=keywords)
         return render(request,'index.html',{
             'all_videos': all_videos,
         })
@@ -76,4 +69,30 @@ class IndexView(View):
             'all_date': all_date,
             'category_id' : category_id,
             'date_id' : date_id,
+        })
+
+
+class InfoView(View):
+    def get(self,request):
+        return render(request,'info.html')
+
+
+class InfoFav(View):
+    def get(self,request):
+        fav_list = []
+        fav = UserFavorite.objects.filter(user=request.user)
+        for i in fav:
+            video_id = i.fav_id
+            match = Video.objects.get(id=video_id)
+            fav_list.append(match)
+        return render(request,'info_fav.html',{
+            'fav_list':fav_list,
+        })
+
+class InfoMess(View):
+    def get(self,requset):
+        user_id = requset.user.id
+        mess = UserMessage.objects.filter(user=user_id)
+        return render(requset,'info_mess.html',{
+            'mess_list':mess
         })

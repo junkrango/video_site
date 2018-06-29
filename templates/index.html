@@ -1,28 +1,19 @@
-
 {% extends "base.html" %}
  
 {% block mainbody %}
 
 
-<div  style="background-image:url('1.png');height:150px;">
+<div  style="background-image:url('http://p18.qhimg.com/bdr/__/d/_open360/design0403/24.jpg');height:150px;">
     <div class="container " >
     <div  style="float: right;margin-top:5rem;">
-    <form class="form-inline">
+    <form action="/search/" method="POST" autocomplete="off" class="form-inline">
         <div class="input-group ">
-                <div class="input-group-prepend ">
-                  <button type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="dropdown">
-                    选择网站
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="https://www.google.com">GOOGLE</a>
-                    <a class="dropdown-item" href="http://www.runoob.com">RUNOOB</a>
-                    <a class="dropdown-item" href="https://www.taobao.com">TAOBAO</a>
-                  </div>
-                </div>
-                
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-    </div>
+        <input name="keywords" class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+        <button class="btn btn-success" type="submit">Search</button>
+            </div>
+        </div>
+        {% csrf_token %}
   </form>
   </div>
   </div>
@@ -43,7 +34,7 @@
                 <p>上映年份：
 
 
-                <a href="/?cate={{ category_id }}&date=/" class="btn btn-outline-success btn-sm {% ifequal date_id '' %} active {% endifequal %}" role="button">不限</a>
+                <a href="/?cate={{ category_id }}&date=" class="btn btn-outline-success btn-sm {% ifequal date_id '' %} active {% endifequal %}" role="button">不限</a>
                 {% for date in all_date %}
                 <a href="/?cate={{ category_id }}&date={{ date.id }}" class="btn btn-outline-success btn-sm {% ifequal date_id date.id|stringformat:"i" %} active {% endifequal %}" role="button">{{ date.date }}</a>
                 {% endfor %}
