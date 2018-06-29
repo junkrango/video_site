@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+ 
+{% block mainbody %}
+         <!-- 内容栏 -->   
+         <div class="container mt-5">
+			
+            <div class="mx-auto" style="width: 300px;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+    
+                            <td>
+                                <div class="my-5">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                昵称
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                        aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                联系方式
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Phone" aria-label="Phone"
+                                        aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                邮箱
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Email" aria-label="Email"
+                                        aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    验证码
+                                                </span>
+                                                
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="验证码" aria-label="验证码"
+                                            aria-describedby="basic-addon1">
+                                        </div>
+
+                                    <button class="btn btn-success" style="float: right;" type="submit">
+                                        注册
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+{% endblock %}

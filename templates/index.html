@@ -1,0 +1,170 @@
+
+{% extends "base.html" %}
+ 
+{% block mainbody %}
+
+
+<div  style="background-image:url('1.png');height:150px;">
+    <div class="container " >
+    <div  style="float: right;margin-top:5rem;">
+    <form class="form-inline">
+        <div class="input-group ">
+                <div class="input-group-prepend ">
+                  <button type="button" class="btn btn-outline-secondary dropdown-toggle " data-toggle="dropdown">
+                    选择网站
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="https://www.google.com">GOOGLE</a>
+                    <a class="dropdown-item" href="http://www.runoob.com">RUNOOB</a>
+                    <a class="dropdown-item" href="https://www.taobao.com">TAOBAO</a>
+                  </div>
+                </div>
+                
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    </div>
+  </form>
+  </div>
+  </div>
+</div>
+
+ <!-- 筛选栏 -->   
+<div class="container mt-3" >
+        <div>
+            <p>资源分类：
+                <a href="/?cate=&date={{ date_id }}" class="btn btn-outline-success btn-sm {% ifequal category_id '' %} active {% endifequal %}" role="button">不限</a>
+                {% for category in all_categorys %}
+                <a href="/?cate={{ category.id }}&date={{ date_id }}" class="btn btn-outline-success btn-sm {% ifequal category_id category.id|stringformat:"i" %} active {% endifequal %}" role="button">{{ category.cate }}</a>
+                {% endfor %}
+            </p>
+        </div>
+
+        <div>
+                <p>上映年份：
+
+
+                <a href="/?cate={{ category_id }}&date=/" class="btn btn-outline-success btn-sm {% ifequal date_id '' %} active {% endifequal %}" role="button">不限</a>
+                {% for date in all_date %}
+                <a href="/?cate={{ category_id }}&date={{ date.id }}" class="btn btn-outline-success btn-sm {% ifequal date_id date.id|stringformat:"i" %} active {% endifequal %}" role="button">{{ date.date }}</a>
+                {% endfor %}
+                </p>
+        </div>
+        
+        <div>
+                <p>上映年份：
+                    <a href="#" class="btn btn-outline-success btn-sm active" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
+                </p>
+        </div>
+</div>
+
+ <!-- 内容栏 -->   
+<div class="container mt-5">
+    <div class="row">
+    <div class="col-md-10">
+    <div class="row">
+    {% for video in all_videos %}
+    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
+            <div>
+                <a href="">
+                <img class="img-fluid" src="{{ video.image_url }}">
+                </a>
+            </div>
+            <div>
+                <div class="border">&nbsp;</div>
+                <div style="height: 100px;"><a  href="https://www.baidu.com">{{ video.name}}</a></div>
+                <p>{{ video.actor}}</p>
+            </div>
+    </div>
+    {% endfor %}
+
+    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
+            <div>
+                <a href="">
+                <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
+                </a>
+            </div>
+            <div>
+                <div class="border">&nbsp;</div>
+                <a href="https://www.baidu.com">电影</a>
+                <p>主演</p>
+            </div>
+    </div>
+
+    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
+            <div>
+                <a href="">
+                <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
+                </a>
+            </div>
+            <div>
+                <div class="border">&nbsp;</div>
+                <a href="https://www.baidu.com">电影</a>
+                <p>主演</p>
+            </div>
+    </div>
+
+    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
+        <div>
+            <a href="">
+            <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
+            </a>
+        </div>
+        <div>
+            <div class="border">&nbsp;</div>
+            <a href="https://www.baidu.com">电影</a>
+            <p>主演</p>
+        </div>
+</div>
+
+<div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
+        <div>
+            <a href="">
+            <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
+            </a>
+        </div>
+        <div>
+            <div class="border">&nbsp;</div>
+            <a href="https://www.baidu.com">电影</a>
+            <p>主演</p>
+        </div>
+</div>
+
+<div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
+        <div>
+            <a href="">
+            <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
+            </a>
+        </div>
+        <div>
+            <div class="border">&nbsp;</div>
+            <a href="https://www.baidu.com">电影</a>
+            <p>主演</p>
+        </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+          
+</div>
+ <!-- 分页栏 -->   
+<div class="container mt-5 ">                 
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+</div>
+
+{% endblock %}
