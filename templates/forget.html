@@ -1,50 +1,41 @@
 {% extends "base.html" %}
- 
+
 {% block mainbody %}
-         <!-- 内容栏 -->   
+         <!-- 内容栏 -->
          <div class="container mt-5">
-			
+
             <div class="mx-auto" style="width: 300px;">
                 <table class="table">
                     <tbody>
                         <tr>
-    
+
                             <td>
                                 <div class="my-5">
-                                    <form action="/login/" method="POST" autocomplete="off">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend" >
-                                            <span class="input-group-text" id="basic-addon1">
-                                                用户
-                                            </span>
-                                        </div>
-                                        <input name="username" type="text" class="form-control" placeholder="用户" aria-label="用户"
-                                        aria-describedby="basic-addon1">
-                                    </div>
+                                    <form action="/forget/" method="POST" autocomplete="off">
                                     <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">
-                                                    密码
+                                                    邮箱
                                                 </span>
                                             </div>
-                                            <input name="password" type="password" class="form-control" placeholder="密码" aria-label="密码"
+                                            <input name="email" type="email" class="form-control" placeholder="邮箱" aria-label="邮箱"
                                             aria-describedby="basic-addon1">
                                             <div class="input-group-append">
                                             <button class="btn btn-success" style="float: right;" type="submit">
-                                                    登录
+                                                    提交
                                                 </button>
                                                 </div>
                                         </div>
-                                        
+
                                         {% if  msg %}
-                                    
+
                                         <div class="alert alert-info">
                                             <strong>{{ msg }}</strong>
                                         </div>
                                         {% endif %}
                                         {% csrf_token %}
                                     </form>
-                                    
+
                                 </div>
                             </td>
                         </tr>

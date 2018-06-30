@@ -10,6 +10,14 @@
   <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+  <style type="text/css">
+p {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:clip;
+    width:100%;
+}
+</style>
 </head>
 <body >
 
@@ -46,6 +54,8 @@
       <a href="/register/" class="btn btn-info" role="button">注册</a>
       <span>&nbsp</span>
       <a href="/login/" class="btn btn-info" role="button">登录</a>
+      <span>&nbsp</span>
+      <a href="/forget/" class="btn btn-info" role="button">忘记密码</a>
       {% endif %}
     </div>
   </nav>

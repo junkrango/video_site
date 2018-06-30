@@ -8,9 +8,9 @@
     <div  style="float: right;margin-top:5rem;">
     <form action="/search/" method="POST" autocomplete="off" class="form-inline">
         <div class="input-group ">
-        <input name="keywords" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input name="keywords" class="form-control" type="search" placeholder="搜索" aria-label="Search">
             <div class="input-group-append">
-        <button class="btn btn-success" type="submit">Search</button>
+        <button class="btn btn-success" type="submit">搜索</button>
             </div>
         </div>
         {% csrf_token %}
@@ -40,19 +40,7 @@
                 {% endfor %}
                 </p>
         </div>
-        
-        <div>
-                <p>上映年份：
-                    <a href="#" class="btn btn-outline-success btn-sm active" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                    <a href="#" class="btn btn-outline-success btn-sm" role="button">链接按钮</a>
-                </p>
-        </div>
+
 </div>
 
  <!-- 内容栏 -->   
@@ -63,82 +51,17 @@
     {% for video in all_videos %}
     <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
             <div>
-                <a href="">
+                <a href="/detail/?id={{ video.id }}">
                 <img class="img-fluid" src="{{ video.image_url }}">
                 </a>
             </div>
             <div>
-                <div class="border">&nbsp;</div>
-                <div style="height: 100px;"><a  href="https://www.baidu.com">{{ video.name}}</a></div>
-                <p>{{ video.actor}}</p>
+                <p class="mt-3"><a data-toggle="tooltip" title="{{ video.name}}" href="/detail/?id={{ video.id }}">{{ video.name}}</a></p>
+                <p data-toggle="tooltip" title="{{ video.actor}}">{{ video.actor}}</p>
             </div>
     </div>
     {% endfor %}
 
-    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
-            <div>
-                <a href="">
-                <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
-                </a>
-            </div>
-            <div>
-                <div class="border">&nbsp;</div>
-                <a href="https://www.baidu.com">电影</a>
-                <p>主演</p>
-            </div>
-    </div>
-
-    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
-            <div>
-                <a href="">
-                <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
-                </a>
-            </div>
-            <div>
-                <div class="border">&nbsp;</div>
-                <a href="https://www.baidu.com">电影</a>
-                <p>主演</p>
-            </div>
-    </div>
-
-    <div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
-        <div>
-            <a href="">
-            <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
-            </a>
-        </div>
-        <div>
-            <div class="border">&nbsp;</div>
-            <a href="https://www.baidu.com">电影</a>
-            <p>主演</p>
-        </div>
-</div>
-
-<div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
-        <div>
-            <a href="">
-            <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
-            </a>
-        </div>
-        <div>
-            <div class="border">&nbsp;</div>
-            <a href="https://www.baidu.com">电影</a>
-            <p>主演</p>
-        </div>
-</div>
-
-<div class="col-sm-3 col-md-3 col-xs-4 col-lg-2">
-        <div>
-            <a href="">
-            <img class="img-fluid" src="http://pianyuan.net/Uploads/Picture/litpic/06/25Jun2018202006.jpg">
-            </a>
-        </div>
-        <div>
-            <div class="border">&nbsp;</div>
-            <a href="https://www.baidu.com">电影</a>
-            <p>主演</p>
-        </div>
-</div>
 
 </div>
 </div>

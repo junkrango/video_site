@@ -5,28 +5,24 @@
         <div class="container mt-5">
                 <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/info/">
+                            <a class="nav-link " href="/info/">
                                 用户信息
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/info_fav/">
+                            <a class="nav-link " href="/info_fav/">
                                 收藏
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/message/">
+                            <a class="nav-link active" href="/message/">
                                 信息
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">
-                                Disabled
-                            </a>
-                        </li>
+
                     </ul>
         </div>
-        <!-- 展示评论栏 -->
+        <!-- 展示信息栏 -->
         <div class="container mt-5">
 
 
@@ -35,7 +31,7 @@
                                 <tbody>
                                 {% for mess in mess_list %}
                                   <tr>
-                                    <td><img style="height:48px;width:48px;" src="j.jpeg" class="rounded-circle "></td>
+                                    <td style="width: 72px;"><img style="height:48px;width:48px;" src="j.jpeg" class="rounded-circle "></td>
                                     <td>
                                         <div><a href="#" >{{ mess.user }}</a></div>
 
@@ -51,56 +47,6 @@
                                   </tr>
                                 {% endfor %}
 
-                                  <tr>
-                                        <td><img style="height:48px;width:48px;" src="j.jpeg" class="rounded-circle "></td>
-                                        <td>
-                                            <div><a href="#" >Another link</a></div>
-
-                                            <small>
-                                                孔子曾概括《诗经》宗旨为“无邪”，并教育弟子读《诗经》以作为立言、立行的标准。先秦诸子中，引用《诗经》者颇多，如孟子、荀子、墨子、庄子、韩非子等人在说理论证时，多引述《诗经》中的句子以增强说服力。至汉武帝时，《诗经》被儒家奉为经典，成为《六经》及《五经》之一。
-                                                《诗经》内容丰富，反映了劳动与爱情、战争与徭役、压迫与反抗、风俗与婚姻、祭祖与宴会，甚至天象、地貌、动物、植物等方方面面，是周代社会生活的一面镜子。
-                                            </small>
-                                            <div>
-                                                <div style="float: right;">
-                                                    <span class="badge badge-pill badge-info">2018/06/27</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                      </tr>
-
-                                      <tr>
-                                            <td><img style="height:48px;width:48px;" src="j.jpeg" class="rounded-circle "></td>
-                                            <td>
-                                                <div><a href="#" >Another link</a></div>
-
-                                                <small>
-                                                    孔子曾概括《诗经》宗旨为“无邪”，并教育弟子读《诗经》以作为立言、立行的标准。先秦诸子中，引用《诗经》者颇多，如孟子、荀子、墨子、庄子、韩非子等人在说理论证时，多引述《诗经》中的句子以增强说服力。至汉武帝时，《诗经》被儒家奉为经典，成为《六经》及《五经》之一。
-                                                    《诗经》内容丰富，反映了劳动与爱情、战争与徭役、压迫与反抗、风俗与婚姻、祭祖与宴会，甚至天象、地貌、动物、植物等方方面面，是周代社会生活的一面镜子。
-                                                </small>
-                                                <div>
-                                                    <div style="float: right;">
-                                                        <span class="badge badge-pill badge-info">2018/06/27</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                          </tr>
-
-                                          <tr>
-                                                <td><img style="height:48px;width:48px;" src="j.jpeg" class="rounded-circle "></td>
-                                                <td>
-                                                    <div><a href="#" >Another link</a></div>
-
-                                                    <small>
-                                                        孔子曾概括《诗经》宗旨为“无邪”，并教育弟子读《诗经》以作为立言、立行的标准。先秦诸子中，引用《诗经》者颇多，如孟子、荀子、墨子、庄子、韩非子等人在说理论证时，多引述《诗经》中的句子以增强说服力。至汉武帝时，《诗经》被儒家奉为经典，成为《六经》及《五经》之一。
-                                                        《诗经》内容丰富，反映了劳动与爱情、战争与徭役、压迫与反抗、风俗与婚姻、祭祖与宴会，甚至天象、地貌、动物、植物等方方面面，是周代社会生活的一面镜子。
-                                                    </small>
-                                                    <div>
-                                                        <div style="float: right;">
-                                                            <span class="badge badge-pill badge-info">2018/06/27</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                              </tr>
                                 </tbody>
                               </table>
 

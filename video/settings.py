@@ -139,3 +139,10 @@ AUTH_USER_MODEL = 'users.UserProfile'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "1614056450@qq.com"
+EMAIL_HOST_PASSWORD = "jyexrffohwhpbcdh"
+EMAIL_USE_TLS= True
+EMAIL_FROM = "1614056450@qq.com"
+

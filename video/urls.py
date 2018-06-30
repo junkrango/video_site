@@ -15,18 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include,re_path
-from users.views import LoginView, RegisterView, LogoutView, IndexView, SearchView, InfoView, InfoFav, InfoMess
+from users.views import LoginView, RegisterView, LogoutView, IndexView, SearchView, InfoView, InfoFav, InfoMess, Detail, Comment, ActiveUser, ForgetPass, ResetPass
 import xadmin
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', IndexView.as_view(),name='index'),
-    path('login/',LoginView.as_view(),name = 'login'),
-    path('register/',RegisterView.as_view(),name = 'register'),
+    path('login/',LoginView.as_view(),name='login'),
+    path('register/',RegisterView.as_view(),name='register'),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('captcha/',include('captcha.urls')),
-    path('search/',SearchView.as_view(),name = 'search'),
-    path('info/',InfoView.as_view(),name = 'info'),
-    path('info_fav/',InfoFav.as_view(),name = 'info_fav'),
-    path('message/',InfoMess.as_view(),name = 'info_mess'),
+    path('search/',SearchView.as_view(),name='search'),
+    path('info/',InfoView.as_view(),name='info'),
+    path('info_fav/',InfoFav.as_view(),name='info_fav'),
+    path('message/',InfoMess.as_view(),name='info_mess'),
+    path('detail/',Detail.as_view(),name='video_detail'),
+    path('comment/',Comment.as_view(),name='comment'),
+    path('active/',ActiveUser.as_view(),name='active_user'),
+    path('forget/',ForgetPass.as_view(),name='forget_pass'),
+    path('reset/',ResetPass.as_view(),name='reset_pass'),
+
 ]

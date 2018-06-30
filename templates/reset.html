@@ -1,24 +1,24 @@
 {% extends "base.html" %}
- 
+
 {% block mainbody %}
-         <!-- 内容栏 -->   
+         <!-- 内容栏 -->
          <div class="container mt-5">
-			
+
             <div class="mx-auto" style="width: 300px;">
                 <table class="table">
                     <tbody>
                         <tr>
-    
+
                             <td>
                                 <div class="my-5">
-                                    <form action="/login/" method="POST" autocomplete="off">
-                                    <div class="input-group mb-3">
+                                    <form action="/reset/" method="POST" autocomplete="off">
+                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend" >
                                             <span class="input-group-text" id="basic-addon1">
-                                                用户
+                                                邮箱
                                             </span>
                                         </div>
-                                        <input name="username" type="text" class="form-control" placeholder="用户" aria-label="用户"
+                                        <input name="email" type="text" class="form-control" placeholder="输入你的邮箱" aria-label="用户"
                                         aria-describedby="basic-addon1">
                                     </div>
                                     <div class="input-group mb-3">
@@ -27,24 +27,24 @@
                                                     密码
                                                 </span>
                                             </div>
-                                            <input name="password" type="password" class="form-control" placeholder="密码" aria-label="密码"
+                                            <input name="pass_2" type="text" class="form-control" placeholder="密码" aria-label="text"
                                             aria-describedby="basic-addon1">
                                             <div class="input-group-append">
                                             <button class="btn btn-success" style="float: right;" type="submit">
-                                                    登录
+                                                    提交
                                                 </button>
                                                 </div>
                                         </div>
-                                        
+
                                         {% if  msg %}
-                                    
+
                                         <div class="alert alert-info">
                                             <strong>{{ msg }}</strong>
                                         </div>
                                         {% endif %}
                                         {% csrf_token %}
                                     </form>
-                                    
+
                                 </div>
                             </td>
                         </tr>
