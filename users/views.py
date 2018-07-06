@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -6,11 +7,12 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.views.generic.base import View
 from django.urls import reverse
 from videos.models import Category,Video,Push_date
-from operation.models import VideoComments,UserFavorite,UserMessage
+from operation.models import VideoComments,UserFavorite,UserMessage,ChildComment
 from users.models import UserProfile,EmailVerifyRecord
 from .forms import RegisterForm
 from .unit.email_send import send_register_email
 from django.contrib.auth.hashers import make_password
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class LoginView(View):
@@ -56,6 +58,7 @@ class RegisterView(View):
         add_user.nick_name = nick_name
         add_user.username = nick_name
         add_user.mobile = phone
+        #每次生成的密码相同
         add_user.password = make_password(password)
         add_user.email = email
         add_user.save()
@@ -76,15 +79,12 @@ class ResetPass(View):
     def get(self,request):
         return render(request, 'reset.html', {"msg": "请重置密码"})
     def post(self,request):
-        pass_1 = request.POST.get('pass_1','')
+        password = request.POST.get('password','')
         email = request.POST.get('email', '')
-        res = EmailVerifyRecord.objects.filter(email=email)
-        for i in res:
-            a = EmailVerifyRecord.objects.get(code)
-        if res:
-            match = UserProfile.objects.get(email=email)
-            match.password = make_password(pass_1)
-            match.save()
+        match = UserProfile.objects.get(email=email)
+        match.set_password(password)
+        match.first_name = password
+        match.save()
         return render(request, 'reset.html',{"msg": "重置密码成功"})
 
 
@@ -119,18 +119,46 @@ class IndexView(View):
         all_categorys = Category.objects.all()
         all_date = Push_date.objects.all()
         date_id = request.GET.get('date','')
+        all_videos_res = all_videos
         if date_id:
             s_date = Push_date.objects.get(id=int(date_id))
-            all_videos  = all_videos.filter(push_date=s_date)
+            all_videos_date  = all_videos.filter(push_date=s_date)
+            # 对首页进行分页
+            # 尝试获取前台get请求传递过来的page参数
+            # 如果是不合法的配置参数默认返回第一页
+            paginator = Paginator(all_videos_date, 60)  # 每页显示 60
+            page = request.GET.get('page')
+            try:
+                all_videos_res = paginator.page(page)
+            except PageNotAnInteger:
+                # 如果用户请求的页码号不是整数，显示第一页
+                all_videos_res = paginator.page(1)
+            except EmptyPage:
+                # 如果用户请求的页码号超过了最大页码号，显示最后一页
+                all_videos_res = paginator.page(paginator.num_pages)
 
         category_id = request.GET.get('cate','')
         if category_id:
             cate = Category.objects.get(id=int(category_id))
-            all_videos = all_videos.filter(category=cate)
+            all_videos_cate = all_videos.filter(category=cate)
+            # 对首页进行分页
+            # 尝试获取前台get请求传递过来的page参数
+            # 如果是不合法的配置参数默认返回第一页
+            paginator = Paginator(all_videos_cate, 60)  # 每页显示 60
+
+            page = request.GET.get('page')
+            try:
+                all_videos_res = paginator.page(page)
+            except PageNotAnInteger:
+                # 如果用户请求的页码号不是整数，显示第一页
+                all_videos_res = paginator.page(1)
+            except EmptyPage:
+                # 如果用户请求的页码号超过了最大页码号，显示最后一页
+                all_videos_res = paginator.page(paginator.num_pages)
 
         return render(request,'index.html',{
             'all_categorys': all_categorys,
-            'all_videos':all_videos,
+            'all_videos':all_videos_res,
             'all_date': all_date,
             'category_id' : category_id,
             'date_id' : date_id,
@@ -149,6 +177,24 @@ class Comment(View):
         add_comment.save()
         video_detail = Video.objects.get(id=int(video_id))
         comments = VideoComments.objects.filter(course=video_detail)
+        return render(request, 'detail.html', {
+            'video': video_detail,
+            'comments': comments,
+        })
+
+
+class ChildCom(View):
+    def post(self,request):
+        comment_id = request.GET.get('comment_id',None)
+        video_id = request.GET.get('video_id', None)
+        comment = request.POST.get('comment', None)
+        add_comment = ChildComment()
+        add_comment.user = request.user
+        add_comment.comments = comment
+        add_comment.fa_id = int(comment_id)
+        add_comment.save()
+        video_detail = Video.objects.get(id=int(video_id))
+        comments = VideoComments.objects.filter(course=video_detail).order_by('-add_time')
         return render(request, 'detail.html', {
             'video': video_detail,
             'comments': comments,
@@ -184,7 +230,7 @@ class Detail(View):
     def get(self,request):
         video_id = request.GET.get('id','')
         video_detail = Video.objects.get(id=int(video_id))
-        comments = VideoComments.objects.filter(course=video_detail)
+        comments = VideoComments.objects.filter(course=video_detail).order_by('-add_time')
         return render(request,'detail.html',{
             'video':video_detail,
             'comments':comments,
