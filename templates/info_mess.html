@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+             <!-- 选项栏 -->
+        <div class="container mt-5">
+                <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/info/">
+                                用户信息
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/info_fav/">
+                                收藏
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/message/">
+                                信息
+                            </a>
+                        </li>
+
+                    </ul>
+        </div>
+        <!-- 展示信息栏 -->
+        <div class="container mt-5">
+
+
+                        <table class="table">
+
+                                <tbody>
+                                {% for mess in mess_list %}
+                                  <tr>
+                                    <td style="width: 72px;"><img style="height:48px;width:48px;" src="j.jpeg" class="rounded-circle "></td>
+                                    <td>
+                                        <div><a href="#" >{{ mess.user }}</a></div>
+
+                                        <small>
+                                            {{ mess.message }}
+                                        </small>
+                                        <div>
+                                            <div style="float: right;">
+                                                <span class="badge badge-pill badge-info">{{ mess.add_time }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                {% endfor %}
+
+                                </tbody>
+                              </table>
+
+
+
+
+
+        </div>
+{% endblock %}
