@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class UserProfile(AbstractUser):
-
+    '''用户信息'''
     gender_choices = (
         ('male','男'),
         ('female','女')
@@ -26,6 +26,7 @@ class UserProfile(AbstractUser):
 
 
 class EmailVerifyRecord(models.Model):
+    '''邮箱验证'''
     send_choices = (
         ('register','注册'),
         ('forget','找回密码'),

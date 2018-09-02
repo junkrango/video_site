@@ -15,6 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class LoginView(View):
+    '''用户登录'''
     def get(self,request):
         return render(request, 'login.html')
 
@@ -66,6 +67,7 @@ class RegisterView(View):
 
 
 class ForgetPass(View):
+    '''忘记密码'''
     def get(self,request):
         return render(request,'forget.html')
     def post(self,request):
@@ -75,6 +77,7 @@ class ForgetPass(View):
 
 
 class ResetPass(View):
+    '''重设密码'''
     def get(self,request):
         return render(request, 'reset.html', {"msg": "请重置密码"})
     def post(self,request):
@@ -89,6 +92,7 @@ class ResetPass(View):
 
 
 class ActiveUser(View):
+    '''激活用户'''
     def get(self,request):
         code = request.GET.get('code','')
         res = EmailVerifyRecord.objects.filter(code=code)
@@ -104,6 +108,7 @@ class ActiveUser(View):
 
 
 class SearchView(View):
+    '''搜索'''
     def post(self,request):
         keywords = request.POST.get('keywords',None)
         all_videos = Video.objects.filter(name__icontains=keywords)
@@ -112,59 +117,8 @@ class SearchView(View):
         })
 
 
-# class IndexView(View):
-#     def get(self,request):
-#         all_videos = Video.objects.all()
-#         all_categorys = Category.objects.all()
-#         all_date = Push_date.objects.all()
-#         date_id = request.GET.get('date','')
-#         paginator = Paginator(all_videos, 24)  # 每页显示 60
-#         all_videos_res = paginator.page(1)
-#         if date_id:
-#             s_date = Push_date.objects.get(id=int(date_id))
-#             all_videos_date  = all_videos.filter(push_date=s_date)
-#             # 对首页进行分页
-#             # 尝试获取前台get请求传递过来的page参数
-#             # 如果是不合法的配置参数默认返回第一页
-#             paginator = Paginator(all_videos_date, 24)  # 每页显示 12
-#             page = request.GET.get('page')
-#             try:
-#                 all_videos_res = paginator.page(page)
-#             except PageNotAnInteger:
-#                 # 如果用户请求的页码号不是整数，显示第一页
-#                 all_videos_res = paginator.page(1)
-#             except EmptyPage:
-#                 # 如果用户请求的页码号超过了最大页码号，显示最后一页
-#                 all_videos_res = paginator.page(paginator.num_pages)
-#
-#         category_id = request.GET.get('cate','')
-#         if category_id:
-#             cate = Category.objects.get(id=int(category_id))
-#             all_videos_cate = all_videos.filter(category=cate)
-#             # 对首页进行分页
-#             # 尝试获取前台get请求传递过来的page参数
-#             # 如果是不合法的配置参数默认返回第一页
-#             paginator = Paginator(all_videos_cate, 24)  # 每页显示 60
-#
-#             page = request.GET.get('page')
-#             try:
-#                 all_videos_res = paginator.page(page)
-#             except PageNotAnInteger:
-#                 # 如果用户请求的页码号不是整数，显示第一页
-#                 all_videos_res = paginator.page(1)
-#             except EmptyPage:
-#                 # 如果用户请求的页码号超过了最大页码号，显示最后一页
-#                 all_videos_res = paginator.page(paginator.num_pages)
-#
-#         return render(request,'index.html',{
-#             'all_categorys': all_categorys,
-#             'all_videos':all_videos_res,
-#             'all_date': all_date,
-#             'category_id' : category_id,
-#             'date_id' : date_id,
-#         })
-
 class IndexView(View):
+    '''主页'''
     def get(self,request):
         all_categorys = Category.objects.all()
         all_videos = Video.objects.all()
@@ -193,6 +147,7 @@ class IndexView(View):
 
 
 class Comment(View):
+    '''评论'''
     def post(self,request):
         comment = request.POST.get('comment',None)
         video_id = request.GET.get('video_id','')
@@ -211,6 +166,7 @@ class Comment(View):
 
 
 class ChildCom(View):
+    '''子评论'''
     def post(self,request):
         comment_id = request.GET.get('comment_id',None)
         video_id = request.GET.get('video_id', None)
@@ -228,11 +184,13 @@ class ChildCom(View):
         })
 
 class InfoView(View):
+    '''用户信息'''
     def get(self,request):
         return render(request,'info.html')
 
 
 class InfoFav(View):
+    '''用户收藏'''
     def get(self,request):
         fav_list = []
         fav = UserFavorite.objects.filter(user=request.user)
@@ -245,6 +203,7 @@ class InfoFav(View):
         })
 
 class InfoMess(View):
+    '''用户消息'''
     def get(self,requset):
         user_id = requset.user.id
         mess = UserMessage.objects.filter(user=user_id)
@@ -254,6 +213,7 @@ class InfoMess(View):
 
 
 class Detail(View):
+    '''详情'''
     def get(self,request):
         video_id = request.GET.get('id','')
         video_detail = Video.objects.get(id=int(video_id))
