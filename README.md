@@ -1,5 +1,7 @@
 # Django 在线视频程序
 
+在线预览[www.junkman.top](www.junkman.top)
+
 Django + Bootstrap4 + Mysql + Xadmin
 
 ###### 功能
