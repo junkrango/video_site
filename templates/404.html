@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+ 
+{% block mainbody %}
+
+
+<div  style="background-image:url('http://p18.qhimg.com/bdr/__/d/_open360/design0403/24.jpg');height:150px;">
+    <div class="container " >
+    <div  style="float: right;margin-top:5rem;">
+    <form action="/search/" method="POST" autocomplete="off" class="form-inline">
+        <div class="input-group ">
+        <input name="keywords" class="form-control" type="search" placeholder="搜索" aria-label="Search">
+            <div class="input-group-append">
+        <button class="btn btn-success" type="submit">搜索</button>
+            </div>
+        </div>
+        {% csrf_token %}
+  </form>
+  </div>
+  </div>
+</div>
+<div class="container">
+  <div class="alert alert-danger" style="margin:50px;">
+    <strong>404</strong>你访问的内容不存在。
+  </div>
+</div>
+{% endblock %}
